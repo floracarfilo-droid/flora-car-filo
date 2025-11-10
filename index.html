@@ -105,6 +105,86 @@
 </section>
 
 <main>
+
+
+<section id="fast-reservation" aria-labelledby="fastReservationTitle" style="margin-bottom:18px;">
+  <h2 id="fastReservationTitle">Hızlı Rezervasyon</h2>
+  <div class="box" style="padding:14px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;align-items:center;">
+      <div>
+        <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Araç Seçiniz</label>
+        <select id="fast-car-select" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
+          <option value="">Araç seçiniz</option>
+        </select>
+      </div>
+      <div>
+     <div>
+  <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Şehir</label>
+  <select id="fast-city-select" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
+    <option value="">Şehir seçiniz</option>
+    <option value="Adana">Adana</option>
+    <option value="Adıyaman">Adıyaman</option>
+    <option value="Afyonkarahisar">Afyonkarahisar</option>
+    <option value="Ağrı">Ağrı</option>
+    <option value="Amasya">Amasya</option>
+    <option value="Ankara">Ankara</option>
+    <option value="Antalya">Antalya</option>
+    <option value="Artvin">Artvin</option>
+    <option value="Aydın">Aydın</option>
+    <option value="Balıkesir">Balıkesir</option>
+    <option value="Bilecik">Bilecik</option>
+    <option value="Bingöl">Bingöl</option>
+    <option value="Bitlis">Bitlis</option>
+    <option value="Bolu">Bolu</option>
+    <option value="Burdur">Burdur</option>
+    <option value="Bursa">Bursa</option>
+    <option value="Çanakkale">Çanakkale</option>
+    <option value="Çankırı">Çankırı</option>
+    <option value="Çorum">Çorum</option>
+    <option value="Denizli">Denizli</option>
+    <option value="Diyarbakır">Diyarbakır</option>
+    <option value="Edirne">Edirne</option>
+    <option value="Elazığ">Elazığ</option>
+    <option value="Erzincan">Erzincan</option>
+    <option value="Erzurum">Erzurum</option>
+    <option value="Eskişehir">Eskişehir</option>
+    <option value="Gaziantep">Gaziantep</option>
+    <option value="Giresun">Giresun</option>
+    <option value="Gümüşhane">Gümüşhane</option>
+    <option value="Hakkari">Hakkari</option>
+    <option value="Hatay">Hatay</option>
+    <option value="Isparta">Isparta</option>
+    <option value="Mersin">Mersin</option>
+    <option value="İstanbul">İstanbul</option>
+    <option value="İzmir">İzmir</option>
+    <option value="Kars">Kars</option>
+    <option value="Kayseri">Kayseri</option>
+    <option value="Kocaeli">Kocaeli</option>
+    <option value="Konya">Konya</option>
+    <option value="Malatya">Malatya</option>
+    <option value="Manisa">Manisa</option>
+    <option value="Muğla">Muğla</option>
+    <option value="Ordu">Ordu</option>
+    <option value="Samsun">Samsun</option>
+    <option value="Trabzon">Trabzon</option>
+    <option value="Van">Van</option>
+    <option value="Zonguldak">Zonguldak</option>
+  </select>
+</div>
+      </div>
+      <div>
+        <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Kaç Gün?</label>
+        <input type="number" id="fast-days" min="1" placeholder="Gün sayısı" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
+      </div>
+      <div style="text-align:right">
+        <div id="fast-total" class="service-desc">Toplam: -</div>
+        <a id="fast-wa" class="btn" style="background:var(--whatsapp);color:#fff;border-radius:8px;padding:10px 12px;display:inline-block;margin-top:8px;" href="#" target="_blank" rel="noopener">Hemen WhatsApp'tan Rezervasyon Yap</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /HIZLI REZERVASYON -->
+
   <!-- ARAÇ FİLOSU -->
   <section id="fleet" aria-labelledby="fleetTitle">
     <h2 id="fleetTitle">Araç Filosu</h2>
@@ -169,13 +249,7 @@
 
 
 <!-- RESERVATION SECTION -->
-<section id="reservation" aria-labelledby="reservationTitle">
-  <h2 id="reservationTitle">Rezervasyon</h2>
-  <p class="service-desc">Aşağıdan hızlıca araç seçip WhatsApp ile rezervasyon gönderebilirsiniz. Depozito: 3000 ₺.</p>
-  <div class="grid" id="reservationList">
-    <!-- Filled by JS -->
-  </div>
-</section>
+
 
 </main>
 
@@ -543,6 +617,279 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); cl
 }
 
 </style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const DEPOSIT = 3000;
+  // Populate fast-car-select from vehicles array if exists, else read from cards
+  const fastCar = document.getElementById('fast-car-select');
+  if(fastCar){
+    if(window.vehicles && Array.isArray(window.vehicles)){
+      window.vehicles.forEach(v=>{
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        opt.dataset.price = v.price || 0;
+        opt.textContent = v.name + (v.price? (' — ' + v.price + ' ₺/gün') : '');
+        fastCar.appendChild(opt);
+      });
+    } else {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(c=>{
+        try{
+          const nameEl = c.querySelector('.title') || c.querySelector('h3') || c.querySelector('strong');
+          const priceEl = c.querySelector('.daily');
+          const name = nameEl ? nameEl.textContent.trim() : null;
+          let price = 0;
+          if(priceEl){
+            const m = priceEl.textContent.replace(/\\./g,'').match(/(\\d+)/);
+            if(m) price = Number(m[1]);
+          }
+          if(name){
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.dataset.price = price;
+            opt.textContent = name + (price? (' — ' + price + ' ₺/gün') : '');
+            fastCar.appendChild(opt);
+          }
+        }catch(e){}
+      });
+    }
+  }
+
+  // Transform each card: remove date inputs and add days input which updates per-card WhatsApp link
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, idx)=>{
+    try{
+      const calc = card.querySelector('.calc');
+      if(calc){
+        calc.innerHTML = '';
+        const daysLabel = document.createElement('label');
+        daysLabel.innerHTML = 'Gün: <input type=\"number\" class=\"card-days\" min=\"1\" style=\"width:80px;padding:6px;border-radius:6px;border:1px solid #eee;\">';
+        calc.appendChild(daysLabel);
+        const totalDiv = document.createElement('div');
+        totalDiv.className = 'total card-total';
+        totalDiv.style.marginLeft = '8px';
+        totalDiv.textContent = 'Toplam: -';
+        calc.appendChild(totalDiv);
+      }
+
+      const waBtn = card.querySelector('a.whatsapp-reserve') || card.querySelector('a[href*=\"wa.me\"]') || card.querySelector('a.btn.whatsapp');
+      const callBtn = card.querySelector('a.call-btn') || card.querySelector('a[href^=\"tel:\"]');
+      if(waBtn){
+        waBtn.setAttribute('href', 'https://wa.me/905016446451');
+        waBtn.setAttribute('target','_blank');
+        waBtn.setAttribute('rel','noopener');
+        waBtn.textContent = 'WhatsApp';
+      }
+      if(callBtn){
+        callBtn.setAttribute('href', 'tel:+905016446451');
+        callBtn.textContent = callBtn.textContent.trim() || 'Hemen Ara';
+      }
+
+      const daysInput = card.querySelector('.card-days');
+      const priceText = card.querySelector('.daily') ? card.querySelector('.daily').textContent : '';
+      let price = 0;
+      if(priceText){
+        const m = priceText.replace(/\\./g,'').match(/(\\d+)/);
+        if(m) price = Number(m[1]);
+      } else {
+        price = Number(card.dataset.price || 0);
+      }
+      if(daysInput){
+        daysInput.addEventListener('input', function(){
+          const d = Number(this.value) || 0;
+          if(d>0 && price>0 && waBtn){
+            const grand = d * price + DEPOSIT;
+            const nameEl = card.querySelector('.title') || card.querySelector('h3') || card.querySelector('strong');
+            const carName = nameEl ? nameEl.textContent.trim() : ('Araç ' + (idx+1));
+            const citySelect = card.querySelector('.city');
+            const city = citySelect ? citySelect.value || 'Belirtilmemiş' : 'Belirtilmemiş';
+            const msg = `Merhaba, ${carName} aracı için ${city} şehrinde ${d} gün kiralamak istiyorum. Toplam: ${grand.toLocaleString()} ₺ (depozito dahil).`;
+            waBtn.href = 'https://wa.me/905016446451?text=' + encodeURIComponent(msg);
+            const cardTotal = card.querySelector('.card-total');
+            if(cardTotal) cardTotal.textContent = `Toplam: ${grand.toLocaleString()} ₺`;
+          } else if(waBtn){
+            waBtn.href = 'https://wa.me/905016446451';
+            const cardTotal = card.querySelector('.card-total');
+            if(cardTotal) cardTotal.textContent = 'Toplam: -';
+          }
+        });
+      }
+    }catch(e){}
+  });
+
+  // Wire up fast reservation update logic
+  const carSel = document.getElementById('fast-car-select');
+  const citySel = document.getElementById('fast-city-select');
+  const daysInp = document.getElementById('fast-days');
+  const total = document.getElementById('fast-total');
+  const wa = document.getElementById('fast-wa');
+  function fastUpdate(){
+    const opt = carSel && carSel.selectedOptions && carSel.selectedOptions[0];
+    const car = opt ? opt.value : '';
+    const price = opt ? Number(opt.dataset.price || 0) : 0;
+    const city = citySel ? citySel.value : '';
+    const days = daysInp ? Number(daysInp.value || 0) : 0;
+    if(!car || !price || !days){
+      total.textContent = 'Toplam: -';
+      wa.removeAttribute('href');
+      return;
+    }
+    const grand = price * days + DEPOSIT;
+    total.textContent = `Toplam: ${days} gün x ${price.toLocaleString()} ₺ + ${DEPOSIT.toLocaleString()} ₺ depozito = ${grand.toLocaleString()} ₺`;
+    const msg = `Merhaba, ${car} aracı için ${city} şehrinde ${days} gün kiralamak istiyorum. Toplam: ${grand.toLocaleString()} ₺ (depozito dahil).`;
+    wa.href = 'https://wa.me/905016446451?text=' + encodeURIComponent(msg);
+  }
+  [carSel, citySel, daysInp].forEach(el=> el && el.addEventListener('input', fastUpdate));
+
+});
+</script>
+
+
+<!-- BOT_AUTO_SCRIPT_START -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const DEPOSIT = 3000;
+  function parsePrice(text){
+    if(!text) return 0;
+    const m = (''+text).replace(/\./g,'').match(/(\d+)/);
+    return m ? Number(m[1]) : 0;
+  }
+
+  // populate fast car select
+  const carSelect = document.getElementById('fast-car-select');
+  if(carSelect){
+    if(window.vehicles && Array.isArray(window.vehicles) && window.vehicles.length){
+      window.vehicles.forEach(function(v){
+        var opt = document.createElement('option');
+        opt.value = v.name;
+        opt.dataset.price = v.price || 0;
+        opt.textContent = v.name + (v.price? (' — ' + v.price + ' ₺/gün') : '');
+        carSelect.appendChild(opt);
+      });
+    } else {
+      var cards = document.querySelectorAll('.card');
+      cards.forEach(function(c){
+        try{
+          var title = c.querySelector('.title') || c.querySelector('h3') || c.querySelector('strong');
+          var priceEl = c.querySelector('.daily') || c.querySelector('.price') || c.querySelector('.monthly');
+          var name = title ? title.textContent.trim() : null;
+          var price = priceEl ? parsePrice(priceEl.textContent) : Number(c.dataset.price || 0);
+          if(name){
+            var opt = document.createElement('option');
+            opt.value = name;
+            opt.dataset.price = price;
+            opt.textContent = name + (price? (' — ' + price + ' ₺/gün') : '');
+            carSelect.appendChild(opt);
+          }
+        }catch(e){}
+      });
+    }
+  }
+
+  // per-card transform
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card, idx){
+    try{
+      var calc = card.querySelector('.calc');
+      if(!calc){
+        calc = document.createElement('div');
+        calc.className = 'calc';
+        card.querySelector('.card-body') && card.querySelector('.card-body').appendChild(calc);
+      }
+      calc.innerHTML = '';
+      var daysWrap = document.createElement('div');
+      daysWrap.innerHTML = '<label style="font-weight:700;">Gün: <input type="number" class="card-days" min="1" style="width:80px;padding:6px;border-radius:6px;border:1px solid #eee;"></label>';
+      calc.appendChild(daysWrap);
+      var totalDiv = document.createElement('div');
+      totalDiv.className = 'total card-total';
+      totalDiv.style.marginLeft = '8px';
+      totalDiv.textContent = 'Toplam: -';
+      calc.appendChild(totalDiv);
+
+      var anchors = card.querySelectorAll('a');
+      var waBtn = null, telBtn = null;
+      anchors.forEach(function(a){
+        var txt = (a.textContent||'').toLowerCase();
+        var href = a.getAttribute('href')||'';
+        if(txt.indexOf('whatsapp')!==-1 || href.indexOf('wa.me')!==-1) waBtn = a;
+        if(href.indexOf('tel:')===0 || txt.indexOf('ara')!==-1 || txt.indexOf('call')!==-1) telBtn = a;
+      });
+      if(!waBtn){
+        waBtn = document.createElement('a');
+        waBtn.className = 'btn whatsapp-reserve';
+        waBtn.textContent = 'WhatsApp';
+        waBtn.style.background = 'var(--whatsapp)';
+        waBtn.style.color = '#fff';
+        waBtn.style.padding = '8px 10px';
+        waBtn.style.borderRadius = '8px';
+        waBtn.style.display = 'inline-block';
+        card.querySelector('.card-body') && card.querySelector('.card-body').appendChild(waBtn);
+      } else { waBtn.textContent = 'WhatsApp'; }
+      if(!telBtn){
+        telBtn = document.createElement('a');
+        telBtn.className = 'btn call-btn';
+        telBtn.textContent = 'Hemen Ara';
+        telBtn.style.background = 'var(--red)';
+        telBtn.style.color = '#fff';
+        telBtn.style.padding = '8px 10px';
+        telBtn.style.borderRadius = '8px';
+        telBtn.style.display = 'inline-block';
+        card.querySelector('.card-body') && card.querySelector('.card-body').appendChild(telBtn);
+      } else { telBtn.textContent = (telBtn.textContent||'Hemen Ara').trim(); }
+
+      try{ waBtn.setAttribute('href','https://wa.me/905016446451'); waBtn.setAttribute('target','_blank'); waBtn.setAttribute('rel','noopener'); }catch(e){}
+      try{ telBtn.setAttribute('href','tel:+905016446451'); }catch(e){}
+
+      var priceEl = card.querySelector('.daily') || card.querySelector('.price') || card.querySelector('.monthly');
+      var cardPrice = priceEl ? parsePrice(priceEl.textContent) : Number(card.dataset.price || 0);
+      var daysInput = card.querySelector('.card-days');
+      if(daysInput){
+        daysInput.addEventListener('input', function(){
+          var d = Number(this.value) || 0;
+          if(d>0 && cardPrice>0){
+            var grand = d * cardPrice + DEPOSIT;
+            totalDiv.textContent = 'Toplam: ' + grand.toLocaleString() + ' ₺';
+            var titleEl = card.querySelector('.title') || card.querySelector('h3') || card.querySelector('strong');
+            var carName = titleEl ? titleEl.textContent.trim() : ('Araç ' + (idx+1));
+            var cityEl = document.getElementById('fast-city-select');
+            var city = cityEl ? cityEl.value || 'Belirtilmemiş' : 'Belirtilmemiş';
+            var msg = 'Merhaba, ' + carName + ' aracı için ' + city + ' şehrinde ' + d + ' gün kiralamak istiyorum. Toplam: ' + grand.toLocaleString() + ' ₺ (depozito dahil).';
+            waBtn.setAttribute('href','https://wa.me/905016446451?text=' + encodeURIComponent(msg));
+          } else {
+            totalDiv.textContent = 'Toplam: -';
+            waBtn.setAttribute('href','https://wa.me/905016446451');
+          }
+        });
+      }
+    }catch(e){console.warn(e);}
+  });
+
+  // fast reservation calculation
+  var fastCar = document.getElementById('fast-car-select');
+  var fastCity = document.getElementById('fast-city-select');
+  var fastDays = document.getElementById('fast-days');
+  var fastTotal = document.getElementById('fast-total');
+  var fastWa = document.getElementById('fast-wa');
+
+  function fastCalc(){
+    var opt = fastCar && fastCar.selectedOptions && fastCar.selectedOptions[0];
+    var car = opt ? opt.value : '';
+    var price = opt ? Number(opt.dataset.price || 0) : 0;
+    var city = fastCity ? fastCity.value : '';
+    var days = fastDays ? Number(fastDays.value || 0) : 0;
+    if(!car || !price || !days){ fastTotal.textContent = 'Toplam: -'; fastWa.removeAttribute('href'); return; }
+    var grand = price * days + DEPOSIT;
+    fastTotal.textContent = 'Toplam: ' + days + ' gün x ' + price.toLocaleString() + ' ₺ + ' + DEPOSIT.toLocaleString() + ' ₺ depozito = ' + grand.toLocaleString() + ' ₺';
+    var msg = 'Merhaba, ' + car + ' aracı için ' + city + ' şehrinde ' + days + ' gün kiralamak istiyorum. Toplam: ' + grand.toLocaleString() + ' ₺ (depozito dahil).';
+    fastWa.setAttribute('href','https://wa.me/905016446451?text=' + encodeURIComponent(msg));
+  }
+  if(fastCar){ [fastCar, fastCity, fastDays].forEach(function(el){ el && el.addEventListener('input', fastCalc); }); }
+
+});
+</script>
+<!-- BOT_AUTO_SCRIPT_END -->
 
 </body>
 </html>
