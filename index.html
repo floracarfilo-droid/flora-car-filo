@@ -1,1174 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flora Car Filo</title>
-
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T8C59J5T');
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17718492048"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17718492048');
-
-    /* Event snippet for Giden tıklama conversion page */
-    gtag('event', 'conversion', {'send_to': 'AW-17718492048/3HFxCJKSwb0bEJD36oBC'});
-  </script>
-
-  <!-- STİL -->
-  <style>
-    :root{
-      --bg:#f4f6fb;
-      --bg-alt:#ffffff;
-      --text:#0f172a;
-      --red:#e11d48;
-      --red-soft:#fee2e2;
-      --blue:#2563eb;
-      --whatsapp:#25D366;
-      --muted:#6b7280;
-      --card-border:#e5e7eb;
-      --shadow-soft:0 12px 30px rgba(15,23,42,0.08);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Inter",Arial,sans-serif;
-      background:linear-gradient(180deg,#f9fafb 0%,#eef2ff 40%,#f4f6fb 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      line-height:1.45;
-    }
-    a{color:inherit}
-
-    /* HEADER */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 6%;
-      border-bottom:1px solid rgba(148,163,184,0.25);
-      position:sticky;
-      top:0;
-      background:rgba(255,255,255,0.92);
-      backdrop-filter:blur(14px);
-      z-index:50;
-      box-shadow:0 4px 18px rgba(15,23,42,0.06);
-    }
-    .logo img{height:46px;display:block}
-    header .nav{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    header .nav a{
-      font-weight:600;
-      text-decoration:none;
-      color:var(--text);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:14px;
-      transition:background .16s ease, color .16s ease, transform .12s ease;
-    }
-    header .nav a:hover{
-      background:var(--red-soft);
-      color:var(--red);
-      transform:translateY(-1px);
-    }
-
-    main{
-      max-width:1200px;
-      margin:16px auto 32px;
-      padding:0 6%;
-    }
-    h2{
-      font-size:22px;
-      margin:6px 0 14px;
-      letter-spacing:.01em;
-    }
-
-    /* HERO */
-    #hero{
-      text-align:center;
-      position:relative;
-      padding-bottom:24px;
-      background:radial-gradient(circle at top, rgba(37,99,235,0.08), transparent 55%);
-    }
-    #hero img{
-      width:100%;
-      height:auto;
-      max-height:460px;
-      object-fit:cover;
-      border-radius:24px;
-      box-shadow:var(--shadow-soft);
-    }
-    #hero .hero-actions{
-      margin-top:18px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .btn-primary,
-    .btn-outline{
-      display:inline-block;
-      padding:12px 26px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:15px;
-      text-decoration:none;
-      border:2px solid transparent;
-      transition:transform .12s ease, box-shadow .12s ease, background .16s ease, color .16s ease,border-color .16s ease;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,var(--red) 0%,#fb923c 100%);
-      color:#fff;
-      box-shadow:0 12px 30px rgba(248,113,113,0.35);
-    }
-    .btn-primary:hover{
-      transform:translateY(-1px) scale(1.02);
-      box-shadow:0 16px 40px rgba(248,113,113,0.45);
-    }
-    .btn-outline{
-      background:rgba(255,255,255,0.92);
-      border-color:rgba(148,163,184,0.5);
-      color:var(--text);
-    }
-    .btn-outline:hover{
-      border-color:var(--blue);
-      color:var(--blue);
-      box-shadow:0 10px 26px rgba(148,163,184,0.35);
-      transform:translateY(-1px);
-    }
-
-    /* FLEET KARTLARI */
-    .fleet{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:18px;
-    }
-    .card{
-      background:var(--bg-alt);
-      border-radius:16px;
-      border:1px solid var(--card-border);
-      overflow:hidden;
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
-    }
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 16px 40px rgba(15,23,42,0.18);
-      border-color:rgba(59,130,246,0.45);
-    }
-    .media{
-      position:relative;
-      height:260px;
-      overflow:hidden;
-      background:#f3f4f6;
-      cursor:pointer;
-    }
-    .media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transition:transform .45s ease;
-    }
-    .media:hover img{transform:scale(1.05)}
-    .badge-km,
-    .badge-discount{
-      position:absolute;
-      top:12px;
-      padding:7px 12px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:12px;
-      color:#fff;
-      z-index:4;
-      box-shadow:0 8px 20px rgba(15,23,42,0.35);
-    }
-    .badge-km{
-      left:12px;
-      background:var(--blue);
-      animation:blink 1.1s linear infinite;
-    }
-    .badge-discount{
-      right:12px;
-      background:var(--red);
-    }
-    @keyframes blink{
-      0%,100%{opacity:1}
-      50%{opacity:.3}
-    }
-    .card-body{
-      padding:16px 16px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
-    }
-    .title{
-      font-weight:800;
-      font-size:16px;
-    }
-    .meta-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .price-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:baseline;
-    }
-    .daily{
-      font-weight:800;
-      font-size:17px;
-    }
-    .monthly{
-      font-size:13px;
-      color:var(--muted);
-      padding-left:4px;
-    }
-    .deposit{
-      color:#c9a24a;
-      font-weight:600;
-      margin-top:4px;
-      font-size:14px;
-    }
-    .desc{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:4px;
-    }
-    .calc{
-      margin-top:8px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-      font-size:13px;
-    }
-    .calc input[type="date"]{
-      padding:8px;
-      background:#fff;
-      border:1px solid var(--card-border);
-      border-radius:8px;
-      font-size:13px;
-    }
-    .total{
-      font-weight:900;
-      margin-left:auto;
-      font-size:14px;
-      color:var(--blue);
-    }
-    .btn-row{
-      margin-top:10px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    .btn{
-      display:inline-block;
-      background:var(--red);
-      color:#fff;
-      padding:10px 12px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:700;
-      font-size:14px;
-      border:2px solid transparent;
-      transition:transform .12s ease, box-shadow .12s ease, background .16s ease, border-color .16s ease;
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 10px 28px rgba(239,68,68,0.35);
-    }
-    .btn.secondary{
-      background:#fff;
-      color:var(--red);
-      border-color:var(--red);
-      box-shadow:none;
-    }
-    .btn.secondary:hover{
-      background:var(--red-soft);
-    }
-
-    /* WhatsApp butonlarını yeşil yap */
-    .btn.whatsapp-reserve,
-    .btn.whatsapp-reserve-list{
-      background-color:var(--whatsapp);
-      border-color:var(--whatsapp);
-      color:#fff;
-      box-shadow:0 10px 26px rgba(37,211,102,0.35);
-    }
-    .btn.whatsapp-reserve:hover,
-    .btn.whatsapp-reserve-list:hover{
-      filter:brightness(1.05);
-      transform:translateY(-1px) scale(1.01);
-    }
-
-    /* GRID BLOKLAR */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-    }
-    .box{
-      background:var(--bg-alt);
-      border:1px solid var(--card-border);
-      border-radius:14px;
-      padding:16px;
-      box-shadow:0 10px 24px rgba(15,23,42,0.06);
-    }
-    .service-title{
-      display:block;
-      font-weight:900;
-      color:var(--red);
-      margin-bottom:6px;
-      font-size:14px;
-    }
-    .service-desc{
-      color:var(--muted);
-      font-size:14px;
-    }
-    .loc-title{
-      font-weight:800;
-      margin-bottom:6px;
-    }
-    .loc-desc{
-      color:var(--muted);
-      font-size:14px;
-    }
-    .adv-img{
-      width:100%;
-      height:150px;
-      object-fit:contain;
-      background:#f9fafb;
-      border-radius:10px;
-      padding:8px;
-    }
-
-    /* HIZLI REZERVASYON KUTUSU */
-    #fast-reservation .box{
-      border-left:4px solid var(--blue);
-    }
-
-    /* MODAL */
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(15,23,42,0.55);
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-      padding:18px;
-      opacity:0;
-      pointer-events:none;
-      transition:opacity .22s ease;
-    }
-    .modal[aria-hidden="false"]{
-      opacity:1;
-      pointer-events:auto;
-    }
-    .modal-inner{
-      background:#fff;
-      border-radius:16px;
-      max-width:960px;
-      width:100%;
-      max-height:92vh;
-      overflow:auto;
-      padding:18px;
-      border:1px solid var(--card-border);
-      box-shadow:0 20px 50px rgba(15,23,42,0.45);
-      transform:translateY(8px);
-      transition:transform .22s ease;
-    }
-    .modal[aria-hidden="false"] .modal-inner{
-      transform:translateY(0);
-    }
-    .modal-top{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      flex-wrap:wrap;
-    }
-    .slider{
-      flex:1;
-      min-width:260px;
-      max-width:520px;
-      position:relative;
-    }
-    .slide-img{
-      width:100%;
-      height:320px;
-      object-fit:cover;
-      border-radius:12px;
-    }
-    .slider-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      background:rgba(0,0,0,0.55);
-      color:#fff;
-      border:none;
-      padding:8px;
-      border-radius:999px;
-      cursor:pointer;
-    }
-    .slider-btn.left{left:8px}
-    .slider-btn.right{right:8px}
-    .modal-info{
-      flex:1;
-      min-width:220px;
-    }
-    .modal-info h3{
-      margin-top:4px;
-      margin-bottom:6px;
-    }
-    .modal-info .meta{
-      color:var(--muted);
-      font-size:14px;
-      margin-bottom:8px;
-    }
-    .modal-info .calc{
-      margin:10px 0;
-    }
-    .modal-info .total{
-      font-size:16px;
-      font-weight:900;
-    }
-    .modal-close{
-      background:var(--red);
-      color:#fff;
-      border:0;
-      padding:8px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      float:right;
-      font-weight:600;
-    }
-
-    /* REZERVASYON LİSTESİ (alt bölüm) */
-    #reservation{
-      margin-top:24px;
-    }
-    #reservationList .box{
-      border-left:4px solid var(--red);
-    }
-
-    /* FOOTER */
-    footer{
-      padding:24px 6%;
-      border-top:1px solid var(--card-border);
-      color:var(--muted);
-      text-align:center;
-      font-size:14px;
-      background:#f9fafb;
-    }
-
-    /* SABİT WHATSAPP BUTONU */
-    .wh{
-      position:fixed;
-      right:16px;
-      bottom:18px;
-      background:var(--whatsapp);
-      color:#fff;
-      padding:12px 18px;
-      border-radius:999px;
-      font-weight:900;
-      text-decoration:none;
-      z-index:1000;
-      box-shadow:0 16px 40px rgba(15,23,42,0.35);
-      transition:transform .12s ease, box-shadow .12s ease;
-      font-size:15px;
-    }
-    .wh:hover{
-      transform:translateY(-1px) scale(1.03);
-      box-shadow:0 20px 50px rgba(15,23,42,0.5);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width:768px){
-      header{
-        padding:10px 4%;
-      }
-      header .nav{
-        display:none; /* istersen burayı menü butonuna çevirebiliriz */
-      }
-      main{
-        padding:0 4%;
-      }
-      #hero .hero-actions a{
-        display:block;
-        width:100%;
-        max-width:320px;
-        margin:6px auto;
-      }
-      .media{height:220px}
-      .slide-img{height:240px}
-      .modal-top{flex-direction:column}
-      .modal-info{width:100%}
-      section{padding-top:4px;padding-bottom:8px}
-    }
-  </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Puma Filo Car – Araç Kiralama</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8C59J5T"
-            height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="Flora Car Filo" />
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="images/logo.png" alt="Puma Filo Car Logo" class="logo">
+      <div class="brand-text">
+        <span class="brand-title">Puma Filo Car</span>
+        <span class="brand-sub">81 İlde Araç Kiralama</span>
+      </div>
     </div>
-    <nav class="nav" aria-label="Ana menü">
-      <a href="#fleet">Araç Filosu</a>
-      <a href="#advantages">Avantajlar</a>
-      <a href="#services">Hizmetlerimiz</a>
-      <a href="#locations">Lokasyonlar</a>
-      <a href="#about">Hakkımızda</a>
-      <a href="#reservation">Rezervasyon</a>
+    <nav class="nav">
+      <a href="#cars">Araçlar</a>
+      <a href="#why">Neden Biz?</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#contact">İletişim</a>
     </nav>
-  </header>
+    <div class="header-actions">
+      <a href="tel:+905015685103" class="btn small">Ara</a>
+      <a href="https://wa.me/905015685103" target="_blank" class="btn ghost small">WhatsApp</a>
+    </div>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section id="hero">
-    <img src="images/hero.jpg" alt="Flora Car Filo Karşılama Görseli" />
-    <div class="hero-actions">
-      <a href="#fleet" class="btn-primary">Araç Filomuza Göz At</a>
-      <a href="tel:+905515351612" class="btn-outline">Hemen Ara</a>
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('images/hero-bg.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+        <div class="hero-left">
+      <p class="eyebrow">Puma Filo Car</p>
+      <h1>Yeni Nesil Araç Kiralama<br>Konforlu Yolculuğun Kısa Yolu.</h1>
+      <p class="hero-text">
+        Puma Filo Car, şehir içi ve uzun yolculuklar için konforlu, güvenli ve kolay araç kiralama deneyimi sunar.
+        Online rezervasyon yapın, aracı kapınızdan teslim alın; gerisini biz düşünelim.
+      </p>
+      <ul class="hero-bullets">
+        <li>Genç ve bakımlı araç filosu</li>
+        <li>81 ilde çözüm odaklı hizmet</li>
+        <li>Kurumsal ve bireysel kiralama seçenekleri</li>
+      </ul>
+    </div>
+    <div class="hero-right">
+      <div class="quick-card">
+        <h2>Hızlı Rezervasyon</h2>
+        <label>Gün sayısı
+          <input type="number" id="heroQuickDays" min="1" placeholder="Örn: 5">
+        </label>
+        <label>İl seçin
+          <select id="heroQuickCity"></select>
+        </label>
+        <label>Araç seçin
+          <select id="heroQuickCar"></select>
+        </label>
+        <div id="heroQuickResult" class="quick-result"></div>
+        <button class="btn ghost wide" id="heroQuickWhatsappBtn">WhatsApp'tan Gönder</button>
+      </div>
+      <div class="hero-photo-stack">
+        <img src="images/about-main.png" class="photo-main" alt="Mutlu müşteri">
+        <img src="images/gallery-3.jpg" class="photo-floating" alt="Aile aracı">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="quick-strip">
+  <div class="container quick-row">
+    <div class="quick-field">
+      <label for="quickCar">Araç Seç</label>
+      <select id="quickCar"></select>
+    </div>
+    <div class="quick-field">
+      <label for="quickCity">İl Seç</label>
+      <select id="quickCity"></select>
+    </div>
+    <div class="quick-field">
+      <label for="quickDays">Gün Sayısı</label>
+      <input type="number" id="quickDays" min="1" placeholder="Örn: 5">
+    </div>
+    <div class="quick-total" id="quickResult">Toplam: -</div>
+    <button class="btn quick-wa" id="quickWhatsappBtn">WhatsApp Rezervasyon</button>
+  </div>
+</section>
+
+
+<main>
+  <div class="ticker">
+  <div class="ticker-inner">
+    Online rezervasyona özel tüm araçlarda haftalık %10, aylık %35’e varan indirim fırsatı; üstelik ücretsiz vale hizmeti! Hemen ara, aracın kapına gelsin.
+  </div>
+</div>
+<section class="section" id="cars">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Araç Filomuz</h2>
+          <p>Tüm araçlarda 3000₺ depozito ve aylık fiyat bilgisi.</p>
+        </div>
+        <div class="tools">
+          <input type="search" id="carSearch" placeholder="Araç ara (örn: BMW, SUV, Fiat)" />
+          <span id="carCount" class="count-badge">0 araç</span>
+        </div>
+      </div>
+      <div id="carGrid" class="car-grid"></div>
     </div>
   </section>
 
-  <main>
-    <!-- HIZLI REZERVASYON -->
-    <section id="fast-reservation" aria-labelledby="fastReservationTitle">
-      <h2 id="fastReservationTitle">Hızlı Rezervasyon</h2>
-      <div class="box">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;align-items:center;">
-          <div>
-            <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Araç Seçiniz</label>
-            <select id="fast-car-select" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
-              <option value="">Araç seçiniz</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Şehir</label>
-            <select id="fast-city-select" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
-              <option value="">Şehir seçiniz</option>
-              <option value="Adana">Adana</option>
-              <option value="Adıyaman">Adıyaman</option>
-              <option value="Afyonkarahisar">Afyonkarahisar</option>
-              <option value="Ağrı">Ağrı</option>
-              <option value="Amasya">Amasya</option>
-              <option value="Ankara">Ankara</option>
-              <option value="Antalya">Antalya</option>
-              <option value="Artvin">Artvin</option>
-              <option value="Aydın">Aydın</option>
-              <option value="Balıkesir">Balıkesir</option>
-              <option value="Bilecik">Bilecik</option>
-              <option value="Bingöl">Bingöl</option>
-              <option value="Bitlis">Bitlis</option>
-              <option value="Bolu">Bolu</option>
-              <option value="Burdur">Burdur</option>
-              <option value="Bursa">Bursa</option>
-              <option value="Çanakkale">Çanakkale</option>
-              <option value="Çankırı">Çankırı</option>
-              <option value="Çorum">Çorum</option>
-              <option value="Denizli">Denizli</option>
-              <option value="Diyarbakır">Diyarbakır</option>
-              <option value="Edirne">Edirne</option>
-              <option value="Elazığ">Elazığ</option>
-              <option value="Erzincan">Erzincan</option>
-              <option value="Erzurum">Erzurum</option>
-              <option value="Eskişehir">Eskişehir</option>
-              <option value="Gaziantep">Gaziantep</option>
-              <option value="Giresun">Giresun</option>
-              <option value="Gümüşhane">Gümüşhane</option>
-              <option value="Hakkari">Hakkari</option>
-              <option value="Hatay">Hatay</option>
-              <option value="Isparta">Isparta</option>
-              <option value="Mersin">Mersin</option>
-              <option value="İstanbul">İstanbul</option>
-              <option value="İzmir">İzmir</option>
-              <option value="Kars">Kars</option>
-              <option value="Kayseri">Kayseri</option>
-              <option value="Kocaeli">Kocaeli</option>
-              <option value="Konya">Konya</option>
-              <option value="Malatya">Malatya</option>
-              <option value="Manisa">Manisa</option>
-              <option value="Muğla">Muğla</option>
-              <option value="Ordu">Ordu</option>
-              <option value="Samsun">Samsun</option>
-              <option value="Trabzon">Trabzon</option>
-              <option value="Van">Van</option>
-              <option value="Zonguldak">Zonguldak</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Kaç Gün?</label>
-            <input type="number" id="fast-days" min="1" placeholder="Gün sayısı" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
-          </div>
-          <div style="text-align:right">
-            <div id="fast-total" class="service-desc">Toplam: -</div>
-            <a id="fast-wa"
-               class="btn whatsapp-reserve"
-               style="border-radius:999px;padding:10px 18px;display:inline-block;margin-top:8px;"
-               href="#"
-               target="_blank"
-               rel="noopener">
-               Hemen WhatsApp'tan Rezervasyon Yap
-            </a>
-          </div>
+  <section class="section alt" id="why">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Neden Puma Filo Car?</h2>
+          <p>Kurumsal altyapı, genç araçlar ve Türkiye geneli hizmet.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ARAÇ FİLOSU -->
-    <section id="fleet" aria-labelledby="fleetTitle">
-      <h2 id="fleetTitle">Araç Filosu</h2>
-      <div class="fleet" id="fleetContainer" aria-live="polite"></div>
-    </section>
-
-    <!-- AVANTAJLAR -->
-    <section id="advantages" aria-labelledby="advantagesTitle">
-      <h2 id="advantagesTitle">Avantajlar</h2>
-      <div class="grid">
-        <div class="box">
-          <img src="images/seçili-araç-kampanya1.png" alt="Kampanya" class="adv-img">
-          <h3 style="margin-top:8px">Seçili Modellerde Kampanya</h3>
-          <p class="service-desc">
-            Belirli dönemlerde seçili modellerde avantajlı günlük ve aylık fiyatlar sunuyoruz.
-            Uzun dönem kiralamalarda (30+ gün) ek avantajlar uygulanabilir. Kampanya stoklarla
-            sınırlıdır; kesin bilgi için WhatsApp üzerinden teyit alınız.
-          </p>
-          <div style="margin-top:10px">
-            <a class="btn secondary" href="javascript:openAdv(0)">Avantajları Gör</a>
-          </div>
-        </div>
-        <div class="box">
-          <img src="images/avantaj.png" alt="Avantajlar" class="adv-img">
-          <h3 style="margin-top:8px">Full Kasko & Sigorta</h3>
-          <p class="service-desc">
-            Tüm araçlarımız zorunlu trafik sigortası dahilinde ve operasyonel kontrol ile teslim edilir.
-            Poliçe detayları teslim sırasında paylaşılıp, ek sürücüler poliçeye eklenebilir.
-          </p>
-          <div style="margin-top:10px">
-            <a class="btn secondary" href="javascript:openAdv(1)">Avantajları Gör</a>
-          </div>
-        </div>
-        <div class="box">
-          <img src="images/hizmetlerimiz-popup.png" alt="Hizmetler" class="adv-img">
-          <h3 style="margin-top:8px">Vale & Teslimat Hizmetleri</h3>
-          <p class="service-desc">
-            Vale hizmeti, mobil teslimat noktaları ve havalimanı karşılama ile esnek teslim
-            seçenekleri sunuyoruz. Uzun dönem kiralamalarda servis & bakım dahildir.
-          </p>
-          <div style="margin-top:10px">
-            <a class="btn secondary" href="javascript:openAdv(2)">Avantajları Gör</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HİZMETLER -->
-    <section id="services" aria-labelledby="servicesTitle">
-      <h2 id="servicesTitle">Hizmetlerimiz</h2>
-      <div class="grid">
-        <div class="box">
-          <span class="service-title">Kasko & Sigorta</span>
-          <p class="service-desc">
-            Tüm kiralamalarda gerekli sigorta ve zorunlu teminat kapsamı sağlanır;
-            detaylar teslim anında paylaşılır.
-          </p>
-        </div>
-        <div class="box">
-          <span class="service-title">İlave Sürücü</span>
-          <p class="service-desc">
-            Ek sürücü kaydı ile ikinci sürücü de poliçe kapsamında teminat alır.
-          </p>
-        </div>
-        <div class="box">
-          <span class="service-title">Vale Hizmeti</span>
-          <p class="service-desc">
-            Havalimanı ve şehir içi teslimatlarda vale ile karşılama ve park işlemleri
-            tarafımızdan yürütülür.
-          </p>
-        </div>
-        <div class="box">
-          <span class="service-title">Sınırsız KM</span>
-          <p class="service-desc">
-            Tüm kiralamalarda sınırsız kilometre opsiyonu sunulmaktadır.
-          </p>
-        </div>
-        <div class="box">
-          <span class="service-title">7/24 Destek</span>
-          <p class="service-desc">
-            Yol yardımı ve acil destek hattımız günün her saati aktiftir.
-          </p>
-        </div>
-        <div class="box">
-          <span class="service-title">Temiz & Bakımlı</span>
-          <p class="service-desc">
-            Araç bakımları rutin olarak yapılmaktadır.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- LOKASYONLAR -->
-    <section id="locations" aria-labelledby="locationsTitle">
-      <h2 id="locationsTitle">Lokasyonlar</h2>
-      <div class="grid">
-        <div class="box">
-          <div class="loc-title">İstanbul Havalimanı (IST)</div>
-          <div class="loc-desc">
-            Vale karşılama, mobil teslimat noktası ve hızlı bagaj desteği; mobil teslimat
-            ile kapıda teslim opsiyonu.
-          </div>
-        </div>
-        <div class="box">
-          <div class="loc-title">Sabiha Gökçen (SAW)</div>
-          <div class="loc-desc">
-            Terminal çıkışında karşılama, vale hizmeti ve mobil teslimat ile hızlı erişim.
-          </div>
-        </div>
-        <div class="box">
-          <div class="loc-title">Antalya Havalimanı (AYT)</div>
-          <div class="loc-desc">
-            Turistik bölgelere yakın teslim noktaları, 7/24 karşılama ve tatil dönemine
-            özel esnek çözüm.
-          </div>
-        </div>
-        <div class="box">
-          <div class="loc-title">İzmir Adnan Menderes (ADB)</div>
-          <div class="loc-desc">
-            Havalimanı içi teslim ve vale hizmeti; istasyona yakın mobil teslim noktası.
-          </div>
-        </div>
-        <div class="box">
-          <div class="loc-title">Ankara Esenboğa (ESB)</div>
-          <div class="loc-desc">
-            Kurumsal teslimatlar için hızlı koordinasyon, ofis ve havalimanı teslim seçenekleri.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HAKKIMIZDA -->
-    <section id="about" aria-labelledby="aboutTitle">
-      <h2 id="aboutTitle">Hakkımızda</h2>
-      <p class="service-desc">
-        2009’dan beri Flora Car Filo; bireysel ve kurumsal müşterilere şeffaflık, güven
-        ve yüksek hizmet standardı ile araç kiralama çözümleri sunar. Filomuz düzenli
-        bakımları yapılan, temiz ve sigortalı araçlardan oluşur; operasyonel
-        süreçlerimiz hızlı teslimat, vale karşılama ve 7/24 destek ile şekillenmiştir.
-        Kurumsal partnerlerimize özel filo yönetimi, esnek fiyatlama ve raporlama
-        hizmetleri sağlıyoruz. Müşteri memnuniyeti ve sürekli iyileştirme önceliğimizdir;
-        rezervasyonsuz süreçlerimizle hızlı iletişim (WhatsApp) üzerinden araç temini sağlanır.
-      </p>
-    </section>
-
-    <!-- ALT REZERVASYON LİSTESİ (script'in kullandığı alan) -->
-    <section id="reservation" aria-labelledby="reservationTitle">
-      <h2 id="reservationTitle">Tüm Araçlar İçin Detaylı Rezervasyon</h2>
-      <div id="reservationList" class="grid"></div>
-    </section>
-  </main>
-
-  <footer>
-    Telefon: +90 551 535 16 12 &nbsp;|&nbsp;
-    E-posta: info@floracarfilo.com &nbsp;|&nbsp; Türkiye
-  </footer>
-
-  <!-- SABİT WHATSAPP -->
-  <a class="wh" href="https://wa.me/905515351612" target="_blank" rel="noopener">
-    WhatsApp
-  </a>
-
-  <!-- Araç görsel & detay modal -->
-  <div id="modal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal-inner" role="document">
-      <button class="modal-close" onclick="closeModal()">Kapat</button>
-      <div class="modal-top">
-        <div class="slider" id="slider">
-          <button class="slider-btn left" onclick="prevSlide()">◀</button>
-          <img id="slideImg" class="slide-img" src="" alt="Araç görsel">
-          <button class="slider-btn right" onclick="nextSlide()">▶</button>
-        </div>
-        <div class="modal-info">
-          <h3 id="modalTitle"></h3>
-          <div id="modalMeta" class="meta"></div>
-          <p id="modalDesc" class="service-desc"></p>
-          <div style="margin-top:8px" class="calc">
-            <label>Başlangıç: <input type="date" id="modalStart"></label>
-            <label>Bitiş: <input type="date" id="modalEnd"></label>
-            <div class="total" id="modalTotal">Toplam: -</div>
-          </div>
-          <div style="margin-top:12px">
-            <a id="modalWhats" class="btn whatsapp-reserve" href="#" target="_blank" rel="noopener">
-              Hemen Ara
-            </a>
-          </div>
-        </div>
+      <div class="features-grid">
+        <article class="feature">
+          <img src="images/gallery-4.jpg" alt="Anahtar teslim">
+          <h3>Hızlı Teslimat</h3>
+          <p>Uçağınızdan indiğiniz gibi anahtarınızı teslim alabileceğiniz esnek çözümler.</p>
+        </article>
+        <article class="feature">
+          <img src="images/gallery-6.jpg" alt="Güvenilir hizmet">
+          <h3>Kurumsal Güvence</h3>
+          <p>Bakımlı ve sigortalı araçlar, şeffaf sözleşmeler ve sürpriz masraf yok.</p>
+        </article>
+        <article class="feature">
+          <img src="images/gallery-3.jpg" alt="Aile aracı">
+          <h3>Aile Dostu Filomuz</h3>
+          <p>Geniş bagajlı, çocuk koltuğu opsiyonlu ve konforlu aile araçları.</p>
+        </article>
+        <article class="feature">
+          <img src="images/contact.jpg" alt="İletişim">
+          <h3>7/24 Destek</h3>
+          <p>+90 551 535 16 12 numarası üzerinden dilediğiniz an bize ulaşabilirsiniz.</p>
+        </article>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Avantaj detay modal -->
-  <div id="advModal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal-inner">
-      <button class="modal-close" onclick="closeAdv()">Kapat</button>
-      <div id="advContent"></div>
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Galeri</h2>
+          <p>Showroom, teslimat ve yolculuk anlarımızdan kareler.</p>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <img src="images/gallery-2.jpg" alt="Showroom">
+        <img src="images/gallery-4.jpg" alt="Teslimat">
+        <img src="images/gallery-6.jpg" alt="El sıkışma">
+        <img src="images/gallery-3.jpg" alt="Aile aracı">
+      </div>
     </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="cta-overlay"></div>
+    <div class="container cta-inner">
+      <div>
+        <h2>Hemen rezervasyon yapmak ister misiniz?</h2>
+        <p>Gün sayısını ve aracı belirleyin, kalan her şeyle biz ilgilenelim.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="tel:+905015685103" class="btn">Hemen Ara</a>
+        <a href="https://wa.me/905015685103" target="_blank" class="btn ghost">WhatsApp Mesaj Gönder</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-image">
+        <img src="images/contact.jpg" alt="İletişim">
+      </div>
+      <div class="contact-text">
+        <h2>İletişim & Destek</h2>
+        <p>Puma Filo Car olarak, ihtiyacınıza uygun aracı bulmanız için yanınızdayız.</p>
+        <ul class="contact-list">
+          <li><strong>Telefon:</strong> <a href="tel:+905015685103">+90 551 535 16 12</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/905015685103" target="_blank">Mesaj Gönder</a></li>
+          <li><strong>E-posta:</strong> info@pumafilocar.com (örnek)</li>
+        </ul>
+        <p>81 ilde teslimat ve iade seçenekleri için bizi arayın, en uygun çözümleri birlikte planlayalım.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2025 Puma Filo Car. Tüm hakları saklıdır.</span>
+    <span class="footer-phone">Rezervasyon: <a href="tel:+905015685103">+90 501 568 51 03</a></span>
+    <button class="kvkk-btn" id="kvkkOpenBtn" type="button">KVKK Aydınlatma</button>
   </div>
+</footer>
 
-  <script>
-  /* Araç verisi (OLDUĞU GİBİ KORUNDU) */
-  const vehicles = [
-    {name:'Hyundai i20', ext:'hyundai-i20.png', imgs:['hyundai-i20.png','i20-iç.png'], price:1100, fuel:'Benzin', gear:'Otomatik', model:'2024'},
-    {name:'Renault Clio', ext:'Renault-clio.png', imgs:['Renault-clio.png','Clio-iç.png'], price:1100, fuel:'Dizel', gear:'Otomatik', model:'2023'},
-    {name:'Opel Corsa', ext:'opel-corsa.png', imgs:['opel-corsa.png','corsa-iç.png'], price:1100, fuel:'Benzin', gear:'Otomatik', model:'2024'},
-    {name:'Peugeot 308', ext:'peugeot-308.png', imgs:['peugeot-308.png','308-iç.png'], price:1100, fuel:'Dizel', gear:'Otomatik', model:'2024'},
-    {name:'Fiat Egea', ext:'fiat-egea.png', imgs:['fiat-egea.png','egea-iç.png'], price:1100, fuel:'Dizel', gear:'Otomatik', model:'2025'},
-    {name:'Citroën C-Elysée', ext:'c-elysee.png', imgs:['c-elysee.png','elysee-iç.png'], price:1100, fuel:'Benzin', gear:'Otomatik', model:'2023'},
-    {name:'Toyota Corolla', ext:'toyota-corolla.png', imgs:['toyota-corolla.png','corolla-iç.png'], price:1100, fuel:'Benzin', gear:'Otomatik', model:'2025'},
-    {name:'Renault Megane 4', ext:'megane-4.png', imgs:['megane-4.png','megane4-iç.png'], price:1400, fuel:'Dizel', gear:'Otomatik', model:'2024'},
-    {name:'Ford Focus', ext:'ford-focus.png', imgs:['ford-focus.png','focus-iç.png'], price:1400, fuel:'Benzin', gear:'Otomatik', model:'2024'},
-    {name:'VW Passat', ext:'passat.png', imgs:['passat.png','passat-iç.png'], price:1400, fuel:'Dizel', gear:'Otomatik', model:'2024'},
-    {name:'VW Caddy', ext:'caddy.png', imgs:['caddy.png','caddy-iç.png'], price:1400, fuel:'Dizel', gear:'Otomatik', model:'2024'},
-    {name:'Skoda Superb', ext:'süper-b.png', imgs:['süper-b.png','süperb-iç.png'], price:1400, fuel:'Dizel', gear:'Otomatik', model:'2024'},
-    {name:'Audi A3', ext:'audi-a3.png', imgs:['audi-a3.png','a3-iç.png'], price:2000, fuel:'Benzin', gear:'Otomatik', model:'2025'},
-    {name:'BMW 520', ext:'bmw-520.png', imgs:['bmw-520.png','520-iç.png'], price:2000, fuel:'Dizel', gear:'Otomatik', model:'2025'}
-  ];
-
-  /* yardımcılar */
-  function daysBetween(a,b){
-    if(!a||!b) return 0;
-    const da = new Date(a), db = new Date(b);
-    const diff = Math.ceil((db - da) / (1000*60*60*24));
-    return diff>0?diff:0;
-  }
-  function formatTL(n){ return n.toLocaleString('tr-TR') + ' ₺'; }
-
-  const DEPOSIT = 3000;
-
-  /* FLEET RENDER */
-  const fleetEl = document.getElementById('fleetContainer');
-  vehicles.forEach((v,i)=>{
-    const monthlyBase = v.price * 30;
-    const monthly = i < 4 ? Math.round(monthlyBase * 0.9) : monthlyBase;
-
-    const article = document.createElement('article');
-    article.className = 'card';
-    article.innerHTML = `
-      <div class="media" onclick="openModal(${i})" role="button" tabindex="0" aria-label="${v.name} görselleri">
-        <img src="images/${v.ext}" alt="${v.name}">
-        <div class="badge-km">Sınırsız KM</div>
-        ${i<4?'<div class="badge-discount">Aylık %10</div>':''}
-      </div>
-      <div class="card-body">
-        <div class="title">${v.name}</div>
-        <div class="meta-row">
-          <div>Yakıt: ${v.fuel}</div>
-          <div>Vites: ${v.gear}</div>
-          <div>Model: ${v.model}</div>
-        </div>
-        <div class="price-row">
-          <div class="daily">${formatTL(v.price)} / Gün</div>
-          <div class="deposit">Depozito Ücreti: ${formatTL(DEPOSIT)}</div>
-          <div class="monthly">Aylık (30g): ${formatTL(monthly)}</div>
-        </div>
-        <div class="desc">Araç bakımları rutin olarak yapılmaktadır.</div>
-
-        <div style="margin-top:8px">
-          <label style="font-weight:700;font-size:13px;">Şehir</label><br>
-          <select class="city" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;margin-top:6px;">
-            <option value="">Şehir seçiniz</option>
-            <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
-          </select>
-        </div>
-
-        <div class="calc">
-          <label>Başlangıç: <input type="date" class="start"></label>
-          <label>Bitiş: <input type="date" class="end"></label>
-          <div class="total">Toplam: -</div>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn call-btn" href="tel:+905515351612">Hemen Ara</a>
-          <a class="btn whatsapp-reserve" href="#" target="_blank" rel="noopener">WhatsApp'tan Rezervasyon Yap</a>
-          <a class="btn secondary" href="javascript:openModal(${i})">Detay</a>
-        </div>
-      </div>
-    `;
-    const startInput = article.querySelector('.start');
-    const endInput = article.querySelector('.end');
-    const totalEl = article.querySelector('.total');
-
-    function recalc(){
-      const days = daysBetween(startInput.value, endInput.value);
-      const waBtn = article.querySelector('.whatsapp-reserve');
-      if(days>0){
-        const total = days * v.price;
-        const grand = total + DEPOSIT;
-        totalEl.textContent = `Toplam (${days} gün): ${formatTL(total)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}`;
-        const city = (article.querySelector('.city') && article.querySelector('.city').value) || 'Belirtilmemiş';
-        const s = startInput.value;
-        const e = endInput.value;
-        const msg = `Merhaba, ${v.name} aracı için ${city} şehrinde ${s} - ${e} (${days} gün) rezervasyon yapmak istiyorum. Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}.`;
-        if(waBtn){
-          waBtn.href = 'https://wa.me/905515351612?text=' + encodeURIComponent(msg);
-        }
-      } else {
-        totalEl.textContent = 'Toplam: -';
-        const waBtn = article.querySelector('.whatsapp-reserve');
-        if(waBtn) waBtn.href = '#';
-      }
-    }
-    startInput.addEventListener('change', recalc);
-    endInput.addEventListener('change', recalc);
-    const citySelect = article.querySelector('.city');
-    if(citySelect){
-      citySelect.addEventListener('change', recalc);
-    }
-    const waBtnInit = article.querySelector('.whatsapp-reserve');
-    if(waBtnInit) waBtnInit.href = '#';
-
-    fleetEl.appendChild(article);
-  });
-
-  /* MODAL: slider & hesaplama */
-  let currentIndex = 0;
-  let currentVehicle = null;
-  let slideIndex = 0;
-
-  function openModal(index){
-    currentIndex = index;
-    currentVehicle = vehicles[index];
-    slideIndex = 0;
-    const modal = document.getElementById('modal');
-    document.getElementById('modalTitle').textContent = currentVehicle.name;
-    document.getElementById('modalMeta').textContent =
-      `Yakıt: ${currentVehicle.fuel} • Vites: ${currentVehicle.gear} • Model: ${currentVehicle.model}`;
-    document.getElementById('modalDesc').textContent =
-      'Araç bakımları rutin olarak yapılmaktadır. Teslimat ve vale seçenekleri mevcuttur.';
-    document.getElementById('slideImg').src = 'images/' + currentVehicle.imgs[0];
-    document.getElementById('modalStart').value = '';
-    document.getElementById('modalEnd').value = '';
-    document.getElementById('modalTotal').textContent = 'Toplam: -';
-    document.getElementById('modalWhats').href =
-      `https://wa.me/905515351612?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-  }
-  window.openModal = openModal;
-
-  function closeModal(){
-    const m = document.getElementById('modal');
-    m.style.display = 'none';
-    m.setAttribute('aria-hidden','true');
-    currentVehicle = null;
-  }
-  window.closeModal = closeModal;
-
-  function prevSlide(){
-    if(!currentVehicle) return;
-    slideIndex = (slideIndex - 1 + currentVehicle.imgs.length) % currentVehicle.imgs.length;
-    document.getElementById('slideImg').src = 'images/' + currentVehicle.imgs[slideIndex];
-  }
-  function nextSlide(){
-    if(!currentVehicle) return;
-    slideIndex = (slideIndex + 1) % currentVehicle.imgs.length;
-    document.getElementById('slideImg').src = 'images/' + currentVehicle.imgs[slideIndex];
-  }
-  window.prevSlide = prevSlide;
-  window.nextSlide = nextSlide;
-
-  document.getElementById('modalStart').addEventListener('change', updateModalTotal);
-  document.getElementById('modalEnd').addEventListener('change', updateModalTotal);
-
-  function updateModalTotal(){
-    if(!currentVehicle) return;
-    const s = document.getElementById('modalStart').value;
-    const e = document.getElementById('modalEnd').value;
-    const d = daysBetween(s,e);
-    const totalEl = document.getElementById('modalTotal');
-    const wa = document.getElementById('modalWhats');
-    if(d>0){
-      const total = d * currentVehicle.price;
-      totalEl.textContent = `Toplam (${d} gün): ${formatTL(total)}`;
-      const text = `Merhaba, ${currentVehicle.name} için ${s} - ${e} (${d} gün) fiyat bilgisini almak istiyorum. Toplam: ${formatTL(total)}`;
-      wa.href = 'https://wa.me/905515351612?text=' + encodeURIComponent(text);
-    } else {
-      totalEl.textContent = 'Toplam: -';
-      wa.href = `https://wa.me/905515351612?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
-    }
-  }
-
-  /* Avantaj detay içerikleri */
-  const advDetails = [
-    `<h3>Seçili Modellerde Kampanya</h3><p>Belirli dönemlerde seçili modellerde avantajlı fiyatlar sunulmakta; uzun kira periyotlarında ek avantajlar uygulanabilir. Kampanya stoklarla sınırlıdır; kesin bilgi için WhatsApp üzerinden teyit alınız.</p>`,
-    `<h3>Full Kasko & Sigorta</h3><p>Tüm araçlar zorunlu trafik sigortası dahil olmak üzere operasyonel kontroller ile teslim edilir. Poliçe detayları teslim anında açıklanır ve ek sürücüler poliçeye eklenebilir.</p>`,
-    `<h3>Vale & Teslimat Hizmetleri</h3><p>Havalimanı ve şehir içi teslimatlarda vale ile karşılama, mobil teslimat noktası ve kapıda teslim opsiyonları sunuyoruz. Uzun dönem kiralamalarda servis & bakım desteği sağlanır.</p>`
-  ];
-  function openAdv(i){
-    document.getElementById('advContent').innerHTML = advDetails[i];
-    const m = document.getElementById('advModal');
-    m.style.display = 'flex';
-    m.setAttribute('aria-hidden','false');
-  }
-  function closeAdv(){
-    const m = document.getElementById('advModal');
-    m.style.display = 'none';
-    m.setAttribute('aria-hidden','true');
-  }
-  window.openAdv = openAdv;
-  window.closeAdv = closeAdv;
-
-  /* backdrop click & esc */
-  document.querySelectorAll('.modal').forEach(m=>{
-    m.addEventListener('click', e=>{
-      if(e.target===m){
-        m.style.display='none';
-        m.setAttribute('aria-hidden','true');
-      }
-    });
-  });
-  document.addEventListener('keydown', e=>{
-    if(e.key==='Escape'){
-      closeModal();
-      closeAdv();
-    }
-  });
-
-  /* ALT REZERVASYON LİSTESİ */
-  (function populateReservation(){
-    const resList = document.getElementById('reservationList');
-    if(!resList) return;
-    vehicles.forEach((v,i)=>{
-      const item = document.createElement('div');
-      item.className = 'box';
-      item.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-          <div style="flex:1;min-width:180px">
-            <strong>${v.name}</strong>
-            <div style="color:#666;margin-top:6px">${formatTL(v.price)} / Gün</div>
-          </div>
-          <div style="min-width:220px">
-            <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Şehir</label>
-            <select class="city-res" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
-              <option value="">Şehir seçiniz</option>
-              <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
-            </select>
-          </div>
-          <div style="min-width:260px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-            <label>Başlangıç: <input type="date" class="start-res"></label>
-            <label>Bitiş: <input type="date" class="end-res"></label>
-          </div>
-          <div style="min-width:220px;text-align:right">
-            <div class="service-desc total-res">Toplam: -</div>
-            <a class="btn whatsapp-reserve-list" href="#" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">
-              WhatsApp'tan Rezervasyon Yap
-            </a>
-          </div>
-        </div>
-      `;
-      resList.appendChild(item);
-
-      const start = item.querySelector('.start-res');
-      const end = item.querySelector('.end-res');
-      const totalEl = item.querySelector('.total-res');
-      const citySelect = item.querySelector('.city-res');
-      const waBtn = item.querySelector('.whatsapp-reserve-list');
-
-      function recalcRes(){
-        const days = (start.value && end.value)
-          ? Math.ceil((new Date(end.value)-new Date(start.value))/(1000*60*60*24))
-          : 0;
-        if(days>0){
-          const total = days * v.price;
-          const grand = total + DEPOSIT;
-          totalEl.textContent =
-            `Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}`;
-          const city = citySelect.value || 'Belirtilmemiş';
-          const msg =
-            `Merhaba, ${v.name} aracı için ${city} şehrinde ${start.value} - ${end.value} (${days} gün) rezervasyon yapmak istiyorum. ` +
-            `Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}.`;
-          waBtn.href = 'https://wa.me/905515351612?text=' + encodeURIComponent(msg);
-        } else {
-          totalEl.textContent = 'Toplam: -';
-          waBtn.href = '#';
-        }
-      }
-      start.addEventListener('change', recalcRes);
-      end.addEventListener('change', recalcRes);
-      citySelect.addEventListener('change', recalcRes);
-    });
-  })();
-
-  /* HIZLI REZERVASYON SELECT DOLDURMA */
-  (function initFastReservation(){
-    const fastCar = document.getElementById('fast-car-select');
-    const fastCity = document.getElementById('fast-city-select');
-    const fastDays = document.getElementById('fast-days');
-    const fastTotal = document.getElementById('fast-total');
-    const fastWa = document.getElementById('fast-wa');
-
-    if(fastCar){
-      vehicles.forEach(v=>{
-        const opt = document.createElement('option');
-        opt.value = v.name;
-        opt.dataset.price = v.price || 0;
-        opt.textContent = `${v.name} — ${v.price} ₺/gün`;
-        fastCar.appendChild(opt);
-      });
-    }
-    function fastUpdate(){
-      const opt = fastCar && fastCar.selectedOptions && fastCar.selectedOptions[0];
-      const car = opt ? opt.value : '';
-      const price = opt ? Number(opt.dataset.price || 0) : 0;
-      const city = fastCity ? fastCity.value : '';
-      const days = fastDays ? Number(fastDays.value || 0) : 0;
-      if(!car || !price || !days){
-        fastTotal.textContent = 'Toplam: -';
-        fastWa.removeAttribute('href');
-        return;
-      }
-      const grand = price * days + DEPOSIT;
-      fastTotal.textContent =
-        `Toplam: ${days} gün x ${price.toLocaleString('tr-TR')} ₺ + ${DEPOSIT.toLocaleString('tr-TR')} ₺ depozito = ${grand.toLocaleString('tr-TR')} ₺`;
-      const msg =
-        `Merhaba, ${car} aracı için ${city} şehrinde ${days} gün kiralamak istiyorum. Toplam: ${grand.toLocaleString('tr-TR')} ₺ (depozito dahil).`;
-      fastWa.href = 'https://wa.me/905515351612?text=' + encodeURIComponent(msg);
-    }
-    [fastCar, fastCity, fastDays].forEach(el=>{
-      el && el.addEventListener('input', fastUpdate);
-    });
-  })();
-  </script>
+<div class="kvkk-backdrop" id="kvkkModal">
+  <div class="kvkk-dialog">
+    <button class="kvkk-close" id="kvkkCloseBtn" type="button">×</button>
+    <h3>KVKK Aydınlatma Metni (Örnek)</h3>
+    <p>
+      Puma Filo Car olarak, kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında,
+      yalnızca rezervasyon ve bilgilendirme süreçlerinin yürütülmesi amacıyla işlemekteyiz.
+    </p>
+    <p>
+      Verileriniz üçüncü kişilerle izniniz olmadan paylaşılmaz, yasal zorunluluklar dışında aktarılmaz.
+      Detaylı bilgi için bizimle iletişime geçebilirsiniz.
+    </p>
+  </div>
+</div>
 </body>
 </html>
